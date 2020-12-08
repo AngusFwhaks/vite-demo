@@ -4,15 +4,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import HelloWorld from '/@/components/HelloWorld.vue'
-
+import { fetchList } from '/@/api/index'
 export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld
   },
   setup() {
+    onMounted(() => {
+      fetchList().then(res => {
+        console.log(res)
+      })
+    })
     const data = reactive({
       msg: 'HelloWorld'
     })
